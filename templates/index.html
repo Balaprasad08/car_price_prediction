@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <style>
+        .navbar::before {
+            background: url(/static/3.jpg) no-repeat center center/cover;
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            left: 0px;
+            top: 0px;
+            bottom: 0px;
+            right: 0px;
+            opacity: 0.9;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: black;
+        }
+
+        .container {
+            border: 2px solid gold;
+            margin: -25px 0px;
+            padding: 28px 10px;
+            width: 70%;
+            height: 70%;
+            display: block;
+            border-radius: 40px;
+            position: absolute;
+            transition: 60px 30px;
+            left: 30px;
+        }
+
+        #form_group {
+            display: flex;
+            text-align: left;
+            flex-direction: column;
+            color: black;
+            font-weight: bold;
+        }
+
+        .first {
+            position: relative;
+            left: 80px;
+
+
+        }
+
+        #first {
+            text-align: center;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 5px 5px;
+
+
+        }
+
+        .second {
+            position: relative;
+            left: 80px;
+        }
+
+        #second {
+            text-align: center;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 5px 5px;
+        }
+
+        .third {
+            position: relative;
+            left: 80px;
+        }
+
+        #third {
+            text-align: center;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 5px 5px;
+        }
+
+        .fourth {
+            position: absolute;
+            right: 30px;
+        }
+
+        #fourth {
+            text-align: center;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 5px 5px;
+        }
+
+        .fifth {
+            position: absolute;
+            right: 257px;
+            margin: 92px 30px;
+
+        }
+
+        #fuel {
+            text-align: center;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 5px 5px;
+            cursor: pointer;
+        }
+
+        .sixth {
+            position: absolute;
+            right: 200px;
+            margin: 195px 30px;
+
+        }
+
+        #seller {
+            text-align: center;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+
+        }
+
+        .seventh {
+            position: relative;
+            left: 80px;
+        }
+
+        #Transmission {
+            text-align: center;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 5px 5px;
+            cursor: pointer;
+        }
+
+        #sub {
+            display: block;
+            color: white;
+            width: 100px;
+            margin: -12px auto;
+            background-color: black;
+            padding: 4px 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .center {
+            width: 100%;
+            bottom: 0px;
+            position: absolute;
+            background-color:#ADFF2F;
+            font-size: 12px;
+            text-align: center;
+            font-weight: bold;
+            left: 0px;
+        }
+
+        .btn #sub:hover {
+            background-color: blue;
+        }
+
+        .pred{
+            display: block;
+            background-color: #00FA9A;
+            color: black;
+            text-align: center;
+            margin: 30px auto;
+            padding: 2px 2px;
+            width: 30%;
+            border:2px solid white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <h1>Car Price Prediction</h1>
+    </nav>
+    <div class="container">
+        <form action="{{ url_for('predict')}}" method="post">
+            <div id="form_group">
+                <div class="first">
+                    <h3>Enter Year</h3>
+                    <input id="first" name="Year" type="number " placeholder="Year">
+                </div>
+                <div class="second">
+                    <h3>Enter the Showroom Price?(In lakhs)</h3>
+                    <input id="second" name="Present_Price" required="required" placeholder="Present Price">
+                </div>
+                <div class="third">
+                    <h3>How Many Kilometers Drived?</h3>
+                    <input id="third" name="Kms_Driven" required="required" placeholder="Kms Driven">
+                </div>
+                <div class="fourth">
+                    <h3>How much owners previously had the car(0 or 1 or 3) ?</h3>
+                    <input id="fourth" name="Owner" required="required" placeholder="Owner">
+                </div>
+                <div class="fifth">
+                    <h3>What Is the Fuel type?</h3>
+                    <select name="Fuel_Type_Petrol" id="fuel" required="required">
+                        <option value="Petrol">Petrol</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Diesel">CNG</option>
+                    </select>
+                </div>
+                <div class="sixth">
+                    <h3>Are you A Dealer or Individual</h3>
+                    <select name="Seller_Type_Individual" id="seller" required="required">
+                        <option value="Dealer">Dealer</option>
+                        <option value="Individual">Individual</option>
+                    </select>
+                </div>
+                <div class="seventh">
+                    <h3>Transmission type</h3>
+                    <select name="Transmission_Mannual" id="Transmission" required="required">
+                        <option value="Mannual">Manual Car</option>
+                        <option value="Automatic">Automatic Car</option>
+                    </select>
+                </div>
+                <div class="btn">
+                    <button id="sub" type="submit ">Submit</button>
+                </div>
+            </div>
+        </form>
+        <div class="pred">
+            <h3>{{ prediction_text }}<h3>
+        </div>
+    </div>
+    <footer>
+        <div class="center">
+            &copy;Datascience Project: Developed by Mr.Balaprasad Garudkar
+        </div>
+    </footer>
+</body>
+
+</html>
